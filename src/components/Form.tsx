@@ -1,19 +1,23 @@
 import { useState } from "react";
 
-interface Expense {
+export interface Expense {
   description: string;
   amount: number;
   date: Date;
   category: string;
 }
 
-function Form() {
+interface FormProps{
+    onSubmit: (expense: Expense) => void;
+}
+
+function Form({onSubmit}: FormProps) {
   const [description, setDescription] = useState<string>("");
   const [amount, setAmount] = useState<number>(0);
   const [date, setDate] = useState<string>("");
   const [category, setCategory] = useState<string>("");
 
-  const [expenses, setExpenses] = useState<Expense[]>([]);
+  
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,12 +29,12 @@ function Form() {
         category,
     };
 
-    setExpenses([...expenses, newExpense]);
+    onSubmit(newExpense);
 
-    setDescription('');
-    setAmount(0);
-    setDate('');
-    setCategory('');
+        setDescription('');
+        setAmount(0);
+        setDate('');
+        setCategory('');
   };
 
   return (
