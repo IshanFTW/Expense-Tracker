@@ -1,10 +1,11 @@
 import { useState } from "react";
 
 export interface Expense {
-  description: string;
-  amount: number;
-  date: Date;
-  category: string;
+    id: number;
+    description: string;
+    amount: number;
+    date: Date;
+    category: string;
 }
 
 interface FormProps{
@@ -23,6 +24,7 @@ function Form({onSubmit}: FormProps) {
     e.preventDefault();
 
     const newExpense: Expense = {
+        id: Date.now(),
         description,
         amount,
         date: new Date(date),

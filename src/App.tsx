@@ -8,10 +8,15 @@ function App() {
   const addExpense = (newExpense: Expense) => {
     setExpenses([...expenses, newExpense])
   }
+
+  const deleteExpense = (id: number) => {
+    setExpenses(expenses.filter(expense => expense.id !== id));
+  };
+  
   return (
     <div>
       <Form onSubmit = {addExpense} />
-      <ExpenseList expenses = {expenses}/>
+      <ExpenseList expenses = {expenses} ondeleteExpense={deleteExpense}/>
     </div>
     
   )
